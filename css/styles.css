@@ -1,0 +1,238 @@
+:root {
+  /* Season Colors */
+  --summer-sky: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%);
+  --summer-ground: #2D5016;
+  --autumn-sky: linear-gradient(135deg, #FF8C42 0%, #FFB84D 100%);
+  --autumn-ground: #8B4513;
+  --winter-sky: linear-gradient(135deg, #B0E0E6 0%, #E8F4F8 100%);
+  --winter-ground: #F0F8FF;
+  --spring-sky: linear-gradient(135deg, #87CEEB 0%, #FFB6C1 100%);
+  --spring-ground: #90EE90;
+
+  /* Typography */
+  --font-family: 'Segoe UI', 'Georgia', serif;
+  --font-size-base: 16px;
+  --font-size-large: 24px;
+  --font-size-xl: 48px;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-sm: calc(var(--spacing-unit) * 1);
+  --spacing-md: calc(var(--spacing-unit) * 2);
+  --spacing-lg: calc(var(--spacing-unit) * 4);
+  --spacing-xl: calc(var(--spacing-unit) * 8);
+
+  /* Animation */
+  --transition-smooth: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-family);
+  background-color: #000;
+}
+
+/* Main Landscape Container */
+#landscape-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#landscape-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--summer-sky);
+}
+
+/* Story Overlay */
+#story-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.story-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transition: var(--transition-smooth);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+}
+
+.story-text.active {
+  opacity: 1;
+}
+
+.story-text h1 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-md);
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.story-text p {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.story-text blockquote {
+  font-size: var(--font-size-base);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Scroll Indicator */
+#scroll-indicator {
+  position: fixed;
+  bottom: var(--spacing-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: var(--font-size-base);
+  opacity: 0.6;
+  text-align: center;
+  z-index: 20;
+  animation: pulse 2s infinite;
+  transition: opacity 0.6s ease;
+}
+
+#scroll-indicator.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(-50%) translateY(-8px);
+  }
+}
+
+/* Season Progress Bar */
+#season-progress {
+  position: fixed;
+  bottom: var(--spacing-xl);
+  right: var(--spacing-xl);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.progress-bar {
+  width: 200px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 0%;
+  background-color: white;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.season-label {
+  color: white;
+  font-size: var(--font-size-base);
+  font-weight: 300;
+  min-width: 80px;
+  text-align: right;
+  opacity: 0.8;
+}
+
+/* Scrollable Content Area */
+body::after {
+  content: '';
+  display: block;
+  height: 400vh;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .story-text h1 {
+    font-size: 36px;
+  }
+
+  .story-text p {
+    font-size: 18px;
+  }
+
+  #season-progress {
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+  }
+
+  .progress-bar {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .story-text h1 {
+    font-size: 28px;
+  }
+
+  .story-text p {
+    font-size: 16px;
+  }
+
+  #season-progress {
+    display: none;
+  }
+
+  #scroll-indicator {
+    font-size: 12px;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

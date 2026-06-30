@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seasons — An Endless Cycle. An interactive storytelling experience capturing the beauty of nature through a continuous, living landscape.">
+    <title>Seasons — An Endless Cycle</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Main Canvas Container -->
+    <div id="landscape-container">
+        <canvas id="landscape-canvas"></canvas>
+    </div>
+
+    <!-- Story Overlay (appears on scroll) -->
+    <div id="story-container">
+        <div class="story-text summer-story">
+            <h1>☀️ Summer</h1>
+            <p>The Season of Life</p>
+            <blockquote>"Every bright day slowly welcomes a new tomorrow."</blockquote>
+        </div>
+        <div class="story-text autumn-story">
+            <h1>🍂 Autumn</h1>
+            <p>The Season of Change</p>
+            <blockquote>"Every falling leaf makes room for new beginnings."</blockquote>
+        </div>
+        <div class="story-text winter-story">
+            <h1>❄️ Winter</h1>
+            <p>The Season of Rest</p>
+            <blockquote>"Even in stillness, life never stops growing."</blockquote>
+        </div>
+        <div class="story-text spring-story">
+            <h1>🌸 Spring</h1>
+            <p>The Season of Renewal</p>
+            <blockquote>"Every ending quietly becomes a new beginning."</blockquote>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div id="scroll-indicator">Scroll to experience the seasons</div>
+
+    <!-- Season Progress Indicator -->
+    <div id="season-progress">
+        <div class="progress-bar"></div>
+        <div class="season-label">Summer</div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/seasons.js"></script>
+    <script src="js/landscape.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/interactions.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
